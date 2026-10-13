@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milanty</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #2e102e 0%, #0f172a 100%);
+            color: #f8fafc;
+            margin: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        .font-brand {
+            font-family: 'Playfair Display', serif;
+        }
+        .font-logo {
+            font-family: 'Cinzel', serif;
+        }
+
+        @keyframes rotate-aura {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes winner-pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(234, 179, 8, 0.3); }
+            50% { transform: scale(1.02); box-shadow: 0 0 50px rgba(234, 179, 8, 0.6); }
+        }
+
+        .winner-aura {
+            position: relative;
+            z-index: 1;
+            animation: winner-pulse 2.5s ease-in-out infinite;
+            border: 1px solid rgba(234, 179, 8, 0.4) !important;
+        }
+
+        .winner-aura::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0%,
+                #eab308 15%,
+                transparent 30%,
+                #eab308 45%,
+                transparent 60%,
+                #eab308 75%,
+                transparent 90%,
+                transparent 100%
+            );
+            animation: rotate-aura 6s linear infinite;
+            z-index: -2;
+            opacity: 0.8;
+        }
+
+        .winner-aura-inner {
+            position: absolute;
+            inset: 2px;
+            background: linear-gradient(to bottom, #1e293b, #0f172a);
+            border-radius: inherit;
+            z-index: -1;
+        }
+
+        .floating-sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fde047;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float-up 2s ease-out infinite;
+            box-shadow: 0 0 10px #fde047;
+        }
+
+        @keyframes float-up {
+            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-50px) scale(0) rotate(180deg); opacity: 0; }
+        }
+
+        /* Milanty Intro Animations */
+        @keyframes logo-reveal {
+            0% { transform: scale(0.8) rotate(-5deg); opacity: 0; filter: blur(15px); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; filter: blur(0); }
+        }
+
+        @keyframes text-reveal {
+            0% { letter-spacing: -0.2em; opacity: 0; transform: translateY(20px); }
+            100% { letter-spacing: 0.15em; opacity: 1; transform: translateY(0); }
+        }
+
+        .milanty-logo-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #f59e0b, #b45309);
+            border: 2px solid #fde047;
+            border-radius: 30px;
+            box-shadow: 0 15px 50px rgba(180, 83, 9, 0.5), inset 0 0 20px rgba(253, 224, 71, 0.4);
+            animation: logo-reveal 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .milanty-logo-box::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at top left, rgba(255,255,255,0.4), transparent 60%);
+            border-radius: 30px;
+        }
+
+        .milanty-logo-m {
+            font-size: 90px;
+            color: #450a0a;
+            font-weight: 900;
+            line-height: 1;
+            margin-top: 10px;
+            text-shadow: 0 4px 10px rgba(253, 224, 71, 0.5);
+            z-index: 2;
+        }
+
+        .milanty-text {
+            font-size: 72px;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #fde047, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: text-reveal 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.2s;
+            opacity: 0;
+            margin-top: 24px;
+            text-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+        }
+
+        /* Subtle Card Animations for Gameplay */
+        @keyframes card-milanty-sway {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-4px) rotate(1deg); }
+        }
+
+        .animate-milanty-card {
+            animation: card-milanty-sway 5s ease-in-out infinite;
+        }
+
+        @keyframes shimmer-fast {
+            0% { transform: translateX(-150%) skewX(-20deg); }
+            50%, 100% { transform: translateX(150%) skewX(-20deg); }
+        }
+
+        .card-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(253, 224, 71, 0.2), transparent);
+            animation: shimmer-fast 3s infinite;
+            pointer-events: none;
+        }
+
+        /* AI Activity Visualization */
+        @keyframes ai-thinking-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.1), inset 0 0 5px rgba(245, 158, 11, 0.05); border-color: rgba(245, 158, 11, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(245, 158, 11, 0.3), inset 0 0 15px rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.4); }
+        }
+
+        .ai-active-glow {
+            animation: ai-thinking-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes processing-bar {
+            0% { width: 0; opacity: 0.3; }
+            50% { width: 100%; opacity: 1; }
+            100% { width: 0; opacity: 0.3; left: 100%; transform: translateX(-100%); }
+        }
+
+        .ai-processing-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #f59e0b, transparent);
+            animation: processing-bar 2s ease-in-out infinite;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@^2",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

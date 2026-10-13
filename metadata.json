@@ -1,0 +1,6 @@
+{
+  "name": "Milanty",
+  "description": "A strategic card-passing game where you compete against AI opponents to match four cards of the same value. First players to match win big, last two get zero!",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
